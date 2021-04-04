@@ -1,6 +1,6 @@
 # FastAPI-Sessions
 
-## Aims to be a ready-to-use implementation of cookie based sessions for FastAPI
+## Ready-to-use cookie based sessions with custom backends for FastAPI
 
 Usage
 More info coming.
