@@ -3,12 +3,13 @@ from abc import ABC, abstractmethod
 
 from uuid import uuid4
 
+
 class SessionBackend(ABC):
     @abstractmethod
     async def read(self, session_id: str) -> Optional[Dict[str, Any]]:
         """ Read sesion data from the storage."""
         raise NotImplementedError()
-    
+
     @abstractmethod
     async def write(self, data: Dict, session_id: Optional[str] = None) -> str:
         """ Write sesion data to the storage"""

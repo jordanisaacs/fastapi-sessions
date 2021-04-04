@@ -14,6 +14,7 @@ from pydantic import BaseModel
 from fastapi_sessions.backends import InMemoryBackend, SessionBackend
 from fastapi_sessions.typings import SessionInfo
 
+
 class SessionCookie(APIKeyBase):
     def __init__(
         self,
@@ -47,7 +48,7 @@ class SessionCookie(APIKeyBase):
         self.https_only = https_only
         self.httponly = httponly
         self.samesite = samesite
-    
+
     async def __call__(self, request: Request) -> Optional[SessionInfo]:
         api_key = request.cookies.get(self.model.name)
         if not api_key:
@@ -61,7 +62,8 @@ class SessionCookie(APIKeyBase):
 
         try:
             decode_api_key = b64decode(api_key.encode('utf-8'))
-            session_id = self.signer.unsign(decode_api_key, max_age=self.max_age.total_seconds(), return_timestamp=False).decode('utf-8')
+            session_id = self.signer.unsign(decode_api_key, max_age=self.max_age.total_seconds(
+            ), return_timestamp=False).decode('utf-8')
         except:
             if self.auto_error:
                 raise HTTPException(
@@ -80,50 +82,41 @@ class SessionCookie(APIKeyBase):
                 )
             else:
                 return None
-        
+
         return session_data, session_id
-    
-    async def start_and_set_session(self, data: Type[BaseModel], prev_session_info: Optional[SessionInfo], response: Response) -> None:
+
+    async def start_and_set_session(
+        self,
+        data: Type[BaseModel],
+        prev_session_info: Optional[SessionInfo],
+        response: Response,
+    ) -> None:
         if type(data) is not self.data_model:
             raise TypeError("Data is not of right type")
-        
-        await delete_session(SessionInfo)
-        
-        signed_encoded_id = self.create_session(data)
-        create_client_cookie(signed_encoded_id, response)
 
-    async def create_session(self, data):
-        self.delete_session(session_info)
+        await self.delete_session(SessionInfo)
+        session_id = b64encode(
+            self.signer.sign(await self.backend.write(data))
+        ).decode('utf-8')
 
-        session_id = self.signer.sign(await self.backend.write(data))
-        return b64encode(session_id).decode('utf-8')
-        
-    def create_client_cookie(self, session_id: str, response: Response):
         response.set_cookie(
             key=self.model.name,
             value=session_id,
             max_age=self.max_age.total_seconds(),
             expires=self.expires,
             path=self.path,
-            domain=self.domain,            
+            domain=self.domain,
             secure=self.https_only,
             httponly=self.httponly,
             samesite=self.samesite,
         )
 
-    def delete_client_cookie(self, response: Response):
+    async def remove_and_delete_session(
+        self,
+        session_info: Optional[SessionInfo],
+        response: Response,
+    ):
         response.delete_cookie(self.model.name)
 
-    async def delete_session(self, session_info: Optional[SessionInfo]):
         if session_info is not None:
-            await delete_session(session_info[1])
-
-    async def end_and_delete_session(self, session_info: Optional[SessionInfo], response: Response):
-        self.delete_client_cookie()
-        await self.delete_session(session_info)
-
-test_app = FastAPI()
-
-class SessionInfo(BaseModel):
-    id: str
-    data: Any
+            await self.backend.remove(session_info[1])
