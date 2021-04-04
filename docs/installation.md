@@ -2,7 +2,7 @@
 
 To get started use:
 
-```
+```python
 pip install fastapi_sessions
 ```
 

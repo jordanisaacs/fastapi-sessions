@@ -13,12 +13,15 @@ markdown_extensions:
       base_path: docs
   - toc:
       permalink: true
-  - codehilite
+  - pymdownx.highlight
+  - pymdownx.tasklist
+  - pymdownx.superfences
 
 nav:
   - About: index.md
   - installation.md
   - Guide:
+    - Getting Started: guide/getting_started.md
     - Sessions: guide/sessions.md
     - Cookies: guide/cookies.md
     - Backends: guide/backends.md
