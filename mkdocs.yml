@@ -1,0 +1,12 @@
+site_name: FastAPI Sessions
+site_description: Ready-to-use session cookies with custom backends for FastAPI
+
+theme:
+    name: 'material'
+
+repo_name: jordanisaacs/fastapi-sessions
+repo_url: https://github.com/jordanisaacs/fastapi-sessions
+
+nav:
+  - About: index.md
+  - installation.md

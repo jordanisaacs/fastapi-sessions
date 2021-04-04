@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "fastapi-sessions"
+version = "0.1.0"
+license = "MIT"
+description = "Ready-to-use session cookies with custom backends for FastAPI"
+authors = ["Jordan Isaacs"]
+keywords = ["sessions", "cookies", "authorization", "fastapi"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.6"
+fastapi = "^0.63.0"
+itsdangerous = "^1.1.0"
+
+[tool.poetry.metadata.urls]
+Documentation = "https://jordanisaacs.github.io/fastapi-sessions/"
