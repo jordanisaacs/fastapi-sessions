@@ -234,6 +234,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guide" class="md-nav__link">
+    Guide
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -366,6 +380,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    Installation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guide" class="md-nav__link">
+    Guide
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -391,46 +419,21 @@
 <li>[x] Timestamp signed session IDs with <a href="https://itsdangerous.palletsprojects.com/en/1.1.x/">itsdangerous</a></li>
 <li>[x] Compabitibility with OpenAPI docs using <a href="https://swagger.io/docs/specification/authentication/cookie-authentication/">APIKeyCookie</a></li>
 <li>[x] Pydantic models for verifying session data</li>
-<li>[x] Abstrast session backend so you can build one that fits your needs</li>
+<li>[x] Abstract session backend so you can build one that fits your needs</li>
 <li>[x] Currently included backends<ul>
 <li>[x] In memory</li>
 </ul>
 </li>
 </ul>
-<p>Usage
-More info coming.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">SessionData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span>
-
-<span class="n">test_session</span> <span class="o">=</span> <span class="n">SessionCookie</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">,</span>
-    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;helloworld&quot;</span><span class="p">,</span>
-    <span class="n">data_model</span><span class="o">=</span><span class="n">SessionData</span><span class="p">,</span>
-    <span class="n">backend</span><span class="o">=</span><span class="n">InMemoryBackend</span><span class="p">(),</span>
-    <span class="n">scheme_name</span><span class="o">=</span><span class="s2">&quot;Test Cookies&quot;</span><span class="p">,</span>
-    <span class="n">auto_error</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span>
-
-<span class="nd">@test_app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/secure&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">secure_thing</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">SessionData</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">test_session</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="n">session</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
-            <span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span>
-            <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Not authenticated&quot;</span>
-        <span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;You are secure&quot;</span><span class="p">,</span> <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">session</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
-
-<span class="nd">@test_app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/get_session&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="p">):</span>
-    <span class="n">test_user</span> <span class="o">=</span> <span class="n">SessionData</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">test_session</span><span class="o">.</span><span class="n">start_and_set_session</span><span class="p">(</span><span class="n">test_user</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;You now have a session&quot;</span><span class="p">,</span> <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">test_user</span><span class="p">}</span>
-
-<span class="nd">@test_app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/leave_session&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">SessionData</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">test_session</span><span class="p">)):</span>
-    <span class="k">await</span> <span class="n">test_session</span><span class="o">.</span><span class="n">end_and_delete_session</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;You now don&#39;t have a session&quot;</span><span class="p">,</span> <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">session</span><span class="p">}</span>
+<p>Notes:
+- Looking into CSRF protections
+- Plan is to implement more backends</p>
+<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><code>pip install fastapi-sessions
 </code></pre></div>
+
+<h2 id="guide">Guide<a class="headerlink" href="#guide" title="Permanent link">&para;</a></h2>
+<p>Check out the guide to building and using session based authentication with fastapi-sessions: https://jordanisaacs.github.io/fastapi-sessions/guide</p>
                 
               
               
