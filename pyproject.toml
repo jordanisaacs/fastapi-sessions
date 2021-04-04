@@ -6,11 +6,21 @@ description = "Ready-to-use session cookies with custom backends for FastAPI"
 authors = ["Jordan Isaacs"]
 keywords = ["sessions", "cookies", "authorization", "fastapi"]
 readme = "README.md"
+homepage = "https://github.com/jordanisaacs/fastapi-sessions"
+documentation = "https://jordanisaacs.github.io/fastapi-sessions/"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Internet :: WWW/HTTP :: Session"
+]
 
 [tool.poetry.dependencies]
 python = ">=3.6"
 fastapi = "^0.63.0"
 itsdangerous = "^1.1.0"
-
-[tool.poetry.metadata.urls]
-Documentation = "https://jordanisaacs.github.io/fastapi-sessions/"

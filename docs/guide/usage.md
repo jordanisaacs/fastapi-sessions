@@ -1,3 +1,8 @@
+# Example
+
+To document
+
+```python
 from typing import Tuple, Optional, Any
 from fastapi_sessions import SessionCookie
 from fastapi_sessions.backends import SessionBackend, InMemoryBackend
@@ -42,3 +47,4 @@ async def login(username: str, response: Response, session_info: Optional[Sessio
 async def logout(response: Response, session_info: Optional[SessionInfo]  = Depends(test_session)):
     await test_session.end_and_delete_session(session_info, response)
     return {"message": "You now don't have a session", "user": session_info}
+```

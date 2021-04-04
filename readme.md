@@ -1,39 +1,38 @@
 # FastAPI-Sessions
 
-## Aims to be a ready-to-use implementation of cookie based sessions for FastAPI
 
-Usage
-More info coming.
-```python
-class SessionData(BaseModel):
-    username: str
 
-test_session = SessionCookie(
-    name="session",
-    secret_key="helloworld",
-    data_model=SessionData,
-    backend=InMemoryBackend(),
-    scheme_name="Test Cookies",
-    auto_error=False
-)
+---
 
-@test_app.get("/secure")
-async def secure_thing(session: Tuple[SessionData, str] = Depends(test_session)):
-    if session is None:
-        raise HTTPException(
-            status_code=403,
-            detail="Not authenticated"
-        )
-    return {"message": "You are secure", "user": session[0]}
+Documentation: https://jordanisaacs.github.io/fastapi-sessions
 
-@test_app.post("/get_session")
-async def login(username: str, response: Response):
-    test_user = SessionData(username=username)
-    await test_session.start_and_set_session(test_user, response)
-    return {"message": "You now have a session", "user": test_user}
+Source Code: https://github.com/jordanisaacs/fastapi=-sessions
 
-@test_app.post("/leave_session")
-async def logout(response: Response, session: Optional[Tuple[SessionData, str]] = Depends(test_session)):
-    await test_session.end_and_delete_session(session, response)
-    return {"message": "You now don't have a session", "user": session}
+---
+
+Quickly add session authentication to your FastAPI project. **FastAPI Sessions** is designed to be user friendly and customizable.
+
+
+## Features
+
+- [x] Dependency injection to protect the routes you want
+- [x] Timestamp signed session IDs with [itsdangerous](https://itsdangerous.palletsprojects.com/en/1.1.x/)
+- [x] Compabitibility with OpenAPI docs using [APIKeyCookie](https://swagger.io/docs/specification/authentication/cookie-authentication/)
+- [x] Pydantic models for verifying session data
+- [x] Abstract session backend so you can build one that fits your needs
+- [x] Currently included backends
+    - [x] In memory
+
+Notes:
+- Looking into CSRF protections
+- Plan is to implement more backends
+
+## Installation
+
 ```
+pip install fastapi-sessions
+```
+
+## Example
+
+Check out an example in the docs: https://jordanisaacs.github.io/fastapi-sessions/example

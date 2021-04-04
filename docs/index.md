@@ -1,3 +1,1 @@
-# Welcome to FastAPI-Sessions Docs
-
-## Forthcoming
+{!../README.md!}

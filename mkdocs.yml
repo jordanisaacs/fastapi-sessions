@@ -6,7 +6,20 @@ theme:
 
 repo_name: jordanisaacs/fastapi-sessions
 repo_url: https://github.com/jordanisaacs/fastapi-sessions
+edit_uri: ""
+
+markdown_extensions:
+  - markdown_include.include:
+      base_path: docs
+  - toc:
+      permalink: true
+  - codehilite
 
 nav:
   - About: index.md
   - installation.md
+  - Guide:
+    - Sessions: guide/sessions.md
+    - Cookies: guide/cookies.md
+    - Backends: guide/backends.md
+    - Usage: guide/usage.md
