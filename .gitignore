@@ -3,3 +3,4 @@ site/
 venv/
 poetry.lock
 .vscode/
+dist/
