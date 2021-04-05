@@ -1,7 +1,9 @@
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, Tuple
 from abc import ABC, abstractmethod
 
-from uuid import uuid4
+from itsdangerous import URLSafeTimedSerializer
+from base64 import b64encode
+from os import urandom
 
 
 class SessionBackend(ABC):
@@ -11,8 +13,16 @@ class SessionBackend(ABC):
         raise NotImplementedError()
 
     @abstractmethod
-    async def write(self, data: Dict, session_id: Optional[str] = None) -> str:
+    async def write(
+        self,
+        data: Dict,
+        serializer: URLSafeTimedSerializer,
+    ) -> Tuple[str, str]:
         """ Write sesion data to the storage"""
+        raise NotImplementedError()
+
+    @abstractmethod
+    async def update(self, data: Dict, session_id: str):
         raise NotImplementedError()
 
     @abstractmethod
@@ -21,10 +31,10 @@ class SessionBackend(ABC):
         raise NotImplementedError()
 
     @abstractmethod
-    async def exists(self, sesion_id: str) -> bool:
+    async def exists(self, session_id: str) -> bool:
         """ Test if storage contains session data for a given session_id. """
         raise NotImplementedError()
 
-    async def generate_id(self) -> str:
-        """ Generate a new session id. """
-        return str(uuid4())
+    def generate_token(self, serializer: URLSafeTimedSerializer) -> str:
+        """ Generate a new CSPRNG and signs it. """
+        return serializer.dumps(b64encode(urandom(64)).encode("utf-8"))
