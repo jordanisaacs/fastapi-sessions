@@ -1,8 +1,10 @@
 {
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
-    "python.formatting.provider": "autopep8",
     "python.linting.lintOnSave": true,
     "editor.formatOnSave": true,
-    "git.ignoreLimitWarning": true,
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "-l 79"
+    ],
 }
