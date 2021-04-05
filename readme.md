@@ -40,4 +40,4 @@ pip install fastapi-sessions
 
 ## Guide
 
-Check out the guide to building and using session based authentication with fastapi-sessions: [https://jordanisaacs.github.io/fastapi-sessions/guide/getting_started/]()
+Check out the guide to building and using session based authentication with fastapi-sessions: [https://jordanisaacs.github.io/fastapi-sessions/guide/getting_started/](https://jordanisaacs.github.io/fastapi-sessions/guide/getting_started/)
