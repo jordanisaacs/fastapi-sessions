@@ -4,9 +4,9 @@
 
 ---
 
-Documentation: [https://jordanisaacs.github.io/fastapi-sessions/]()
+Documentation: [https://jordanisaacs.github.io/fastapi-sessions/](https://jordanisaacs.github.io/fastapi-sessions/)
 
-Source Code: [https://github.com/jordanisaacs/fastapi-sessions/]()
+Source Code: [https://github.com/jordanisaacs/fastapi-sessions/](https://github.com/jordanisaacs/fastapi-sessions/)
 
 ---
 
