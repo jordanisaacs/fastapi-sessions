@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fastapi-sessions"
-version = "0.1.0"
+version = "0.2.0"
 license = "MIT"
 description = "Ready-to-use session cookies with custom backends for FastAPI"
 authors = ["Jordan Isaacs"]

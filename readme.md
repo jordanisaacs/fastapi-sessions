@@ -34,8 +34,6 @@ Upcoming:
 
 ## Installation
 
-> The project is currently in a pre-alpha state and is not stable.
-
 ```py
 pip install fastapi-sessions
 ```
