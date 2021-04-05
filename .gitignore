@@ -4,4 +4,3 @@ venv/
 poetry.lock
 .vscode/
 dist/
-test_server/
