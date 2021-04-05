@@ -4,9 +4,9 @@
 
 ---
 
-Documentation: https://jordanisaacs.github.io/fastapi-sessions
+Documentation: [https://jordanisaacs.github.io/fastapi-sessions]()
 
-Source Code: https://github.com/jordanisaacs/fastapi=-sessions
+Source Code: [https://github.com/jordanisaacs/fastapi=-sessions]()
 
 ---
 
@@ -36,4 +36,4 @@ pip install fastapi-sessions
 
 ## Guide
 
-Check out the guide to building and using session based authentication with fastapi-sessions: [https://jordanisaacs.github.io/fastapi-sessions/guide/getting](https://jordanisaacs.github.io/fastapi-sessions/guide)
+Check out the guide to building and using session based authentication with fastapi-sessions: [https://jordanisaacs.github.io/fastapi-sessions/guide/getting_started/]()
