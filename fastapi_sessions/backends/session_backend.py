@@ -35,6 +35,6 @@ class SessionBackend(ABC):
         """ Test if storage contains session data for a given session_id. """
         raise NotImplementedError()
 
-    def generate_token(self, serializer: URLSafeTimedSerializer) -> str:
-        """ Generate a new CSPRNG and signs it. """
-        return serializer.dumps(b64encode(urandom(64)).encode("utf-8"))
+    def generate_token(self) -> str:
+        """ Generate a new CSPRNG """
+        return b64encode(urandom(64)).encode("utf-8")
