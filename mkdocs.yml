@@ -19,10 +19,9 @@ markdown_extensions:
 
 nav:
   - About: index.md
-  - installation.md
+  - Sessions: sessions.md
   - Guide:
     - Getting Started: guide/getting_started.md
-    - Sessions: guide/sessions.md
     - Cookies: guide/cookies.md
     - Backends: guide/backends.md
     - Usage: guide/usage.md

@@ -4,9 +4,9 @@
 
 ---
 
-Documentation: [https://jordanisaacs.github.io/fastapi-sessions]()
+Documentation: [https://jordanisaacs.github.io/fastapi-sessions/](https://jordanisaacs.github.io/fastapi-sessions/)
 
-Source Code: [https://github.com/jordanisaacs/fastapi=-sessions]()
+Source Code: [https://github.com/jordanisaacs/fastapi-sessions/](https://github.com/jordanisaacs/fastapi-sessions/)
 
 ---
 
@@ -23,12 +23,18 @@ Quickly add session authentication to your FastAPI project. **FastAPI Sessions**
 - [x] Currently included backends
     - [x] In memory
 
-Notes:
 
-* Looking into CSRF protections
-* Plan is to implement more backends
+Upcoming:
+
+* Documentation and user guides
+* Hassle free CSRF Tokens
+* More backends!
+
+> This project was started on April 3rd and progress is ongoing. Follow the repo for updates!
 
 ## Installation
+
+> The project is currently in a pre-alpha state and is not stable.
 
 ```py
 pip install fastapi-sessions

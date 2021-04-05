@@ -2,3 +2,5 @@ __pycache__/
 site/
 venv/
 poetry.lock
+.vscode/
+dist/
