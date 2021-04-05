@@ -25,7 +25,7 @@ Quickly add session authentication to your FastAPI project. **FastAPI Sessions**
 
 Notes:
 
-* Looking into CSRF protections
+* Currently working on CSRF tokens
 * Plan is to implement more backends
 
 ## Installation
