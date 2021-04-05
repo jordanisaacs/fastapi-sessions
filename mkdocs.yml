@@ -16,6 +16,7 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.tasklist
   - pymdownx.superfences
+  - admonition
 
 nav:
   - About: index.md
