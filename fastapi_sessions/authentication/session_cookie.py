@@ -1,16 +1,15 @@
 from datetime import datetime
-from typing import Generic, Optional, Type, NewType, Tuple, Dict, Any
+from typing import Optional, Type, NewType, Tuple, Dict, Any
 
 from pydantic import BaseModel
 from fastapi import Request, HTTPException, Response
 from fastapi.openapi.models import APIKey, APIKeyIn
 from fastapi.security.base import SecurityBase
 
-from itsdangerous.url_safe import URLSafeTimedSerializer
-from itsdangerous.exc import SignatureExpired, BadTimeSignature
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadTimeSignature
 
 from fastapi_sessions.backends.session_backend import SessionBackend
-from fastapi_sessions.session_wrapper import SessionDataWrapper
+from fastapi_sessions.authentication.session_wrapper import SessionDataWrapper
 
 SessionInfo = NewType("SessionInfo", Tuple[str, Dict[str, Any]])
 
@@ -26,9 +25,9 @@ class SessionCookie(SecurityBase):
         scheme_name: Optional[str] = None,
         auto_error: bool = True,
         max_age: int = 14 * 24 * 60 * 60,  # 14 days in seconds
-        expires: datetime = None,
+        expires: Optional[datetime] = None,
         path: str = "/",
-        domain: str = None,
+        domain: Optional[str] = None,
         secure: bool = False,
         httponly: bool = True,
         samesite: str = "lax",
@@ -50,6 +49,7 @@ class SessionCookie(SecurityBase):
         self.samesite = samesite
 
     async def __call__(self, request: Request) -> Optional[SessionInfo]:
+        """Authenticate a request."""
         # Get the signed session id from the session cookie
         signed_session_id = request.cookies.get(self.model.name)
         if not signed_session_id:
@@ -76,7 +76,7 @@ class SessionCookie(SecurityBase):
 
         # Retrieve the csrf token, if it doesn't exist then its a potential
         # csrf attack and remove the session
-        frontend_signed_csrf_token = request.cookies.get(self.model.name+"csrf")
+        frontend_signed_csrf_token = request.cookies.get(self.model.name + "csrf")
         if not frontend_signed_csrf_token:
             await self.backend.remove(session_id)
             return self.authentication_error()
@@ -96,13 +96,21 @@ class SessionCookie(SecurityBase):
 
         return session_data.session_id, session_data.data
 
-    def authentication_error(self):
+    def authentication_error(self) -> None:
+        """Generate an authentication error if self.auto_error is True.
+
+        Raises:
+            HTTPException: 403, not authenticated
+        """
         if self.auto_error:
             raise HTTPException(status_code=403, detail="Not authenticated")
-        else:
-            return None
 
-    async def create_session(self, data: Type[BaseModel], response: Response, prev_session_info: Optional[str] = None):
+    async def create_session(
+        self,
+        data: Type[BaseModel],
+        response: Response,
+        prev_session_info: Optional[str] = None,
+    ):
         session_data = SessionDataWrapper[self.data_model](data=data)
         if prev_session_info:
             await self.backend.remove(prev_session_info)
@@ -123,8 +131,8 @@ class SessionCookie(SecurityBase):
 
         # Temporary csrf cookie setting
         response.set_cookie(
-            key=self.model.name+"csrf",
-            value=self.signer.dumps(session_data.csrf_token)
+            key=self.model.name + "csrf",
+            value=self.signer.dumps(session_data.csrf_token),
         )
 
     async def end_session(self, session_id: str, response: Response):

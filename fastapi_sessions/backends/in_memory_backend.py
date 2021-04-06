@@ -1,30 +1,28 @@
 from typing import Optional, Dict, Any, Type
+
 from pydantic import BaseModel
 
-from fastapi_sessions.backends.session_backend import SessionBackend
-from fastapi_sessions.session_wrapper import SessionDataWrapper
+from .session_backend import SessionBackend
+from fastapi_sessions.authentication.session_wrapper import SessionDataWrapper
+
 
 class InMemoryBackend(SessionBackend):
-    """ Stores session data in a dictionary. """
+    """Stores session data in a dictionary."""
 
     def __init__(self) -> None:
-        self.data: dict = {}
+        self.data: Dict[str, Dict[str, Any]] = {}
 
     async def read(
-        self,
-        session_id: str
-    ) -> Optional[Dict[str, Any]]:
+        self, session_id: str, data_model: Type[BaseModel]
+    ) -> Optional[SessionDataWrapper[BaseModel]]:
         result = self.data.get(session_id)
         if not result:
             return None
-        print(result)
-        return result.copy()
+        return SessionDataWrapper[data_model](session_id=session_id, **result)
 
-    async def write(self, session_data: SessionDataWrapper[Type[BaseModel]]) -> bool:
+    async def write(self, session_data: SessionDataWrapper[BaseModel]) -> bool:
         session_id = session_data.session_id
-        session_dict = session_data.dict()
-        del session_dict['session_id']
-        self.data[session_id] = session_dict
+        self.data[session_id] = session_data.dict(exclude={"session_id"})
         return True
 
     async def remove(self, session_id: str) -> None:
