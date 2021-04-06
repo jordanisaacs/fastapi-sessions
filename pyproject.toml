@@ -36,7 +36,4 @@ pytest = {version = "^6.2.3", optional = true }
 
 [tool.poetry.extras]
 docs = ["mkdocs-material", "markdown-include"]
-dev = ["flake8", "black", "flake8-commas", "flake8-docstrings", "uvicorn", "pytest" ]
-
-[tool.poetry.dev-dependencies]
-ipykernel = "^5.5.3"
+dev = ["flake8", "black", "flake8-docstrings", "uvicorn", "pytest" ]

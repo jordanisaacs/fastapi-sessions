@@ -1,0 +1,8 @@
+{
+    "include": [
+        "fastapi_sessions"
+    ],
+    "exclude": [
+        "**/__init__.py"
+    ]
+}
