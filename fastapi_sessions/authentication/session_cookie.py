@@ -1,6 +1,6 @@
 from datetime import datetime
 from enum import Enum
-from typing import Optional, Tuple, Union
+from typing import Optional, Tuple, Union, Any
 
 from pydantic import BaseModel, Field
 from fastapi import Request, Response
@@ -32,7 +32,7 @@ class OpenAPIKeyCookie(BaseModel):
 
 class OpenAPIKeyHeader(BaseModel):
     type_ = Field("apiKey", alias="type")
-    in_ = Field("cookie", alias="in")
+    in_ = Field("header", alias="in")
     name: str
 
 
@@ -85,15 +85,18 @@ class SessionCookie:
 
         # Get the signed session id from the session cookie
         signed_session_id = request.cookies.get(self.name)
+        print(signed_session_id)
+        print(signed_csrf_token)
         if not signed_session_id:
-            if signed_csrf_token:
-                return None, SessionCookieError.MissingSessionCookie
-            return None, SessionCookieError.NotSessionCookie
-
+            if not signed_csrf_token:
+                return None, SessionCookieError.NotSessionCookie
+            return None, SessionCookieError.MissingSessionCookie
+        print("test")
         # Unsign and timestamp the signed session id
         try:
             session_id = signer.loads(
                 signed_session_id,
+                salt=self.get_session_name(),
                 max_age=self.params.max_age,
                 return_timestamp=False,
             )
@@ -111,6 +114,7 @@ class SessionCookie:
         try:
             csrf_token = signer.loads(
                 signed_csrf_token,
+                salt=self.get_csrf_name(),
                 max_age=self.params.max_age,
                 return_timestamp=False,
             )
@@ -118,30 +122,49 @@ class SessionCookie:
             return session_id, SessionCookieError.CSRFExpired
         except BadTimeSignature:
             return session_id, SessionCookieError.CSRFCorrupted
-
+        print("success")
         return session_id, csrf_token
 
     async def get_csrf_token(self, request: Request) -> Optional[str]:
         # First try and get it from an html form !!! Not activating. needs more research
-        form = await request.form()
-        print(form)
+        # form = await request.form()
+        # print(form)
         # signed_csrf_token = form.get(self.get_csrf_form_name())
         # if signed_csrf_token:
         #     return signed_csrf_token
 
         # Next try and get it from the header
         signed_csrf_token = request.headers.get(self.get_csrf_header_name())
-        print(request.headers)
+        # print(request.headers)
         return signed_csrf_token
 
     def get_csrf_header_name(self) -> str:
-        return "X-" + self.name.replace("_", "-").upper() + "-csrf"
+        return "x-" + self.name.replace("_", "-").lower() + "-csrf"
 
     def get_csrf_name(self) -> str:
         return self.name + "_csrf"
 
     def get_session_name(self) -> str:
         return self.name + "_cookie"
+
+    def get_scheme_name_cookie(self, scheme_name: str) -> str:
+        return scheme_name + "Cookie"
+
+    def get_scheme_name_csrf(self, scheme_name: str) -> str:
+        return scheme_name + "CSRF"
+
+    def generate_schema(
+        self, scheme_name: str
+    ) -> Tuple[Tuple[str, Any], Tuple[str, Any]]:
+        cookie_scheme = (
+            self.get_scheme_name_cookie(scheme_name),
+            OpenAPIKeyCookie(name=self.name).dict(by_alias=True),
+        )
+        csrf_scheme = (
+            self.get_scheme_name_csrf(scheme_name),
+            OpenAPIKeyHeader(name=self.get_csrf_header_name()).dict(by_alias=True),
+        )
+        return cookie_scheme, csrf_scheme
 
 
 # async def end_session(self, session_id: str, response: Response):

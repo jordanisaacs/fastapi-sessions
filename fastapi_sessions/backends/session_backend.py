@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, Type
 from abc import ABC, abstractmethod
 
 from fastapi_sessions.authentication.session_wrapper import (
@@ -9,7 +9,9 @@ from fastapi_sessions.authentication.session_wrapper import (
 
 class SessionBackend(ABC):
     @abstractmethod
-    async def read(self, session_id: str) -> Optional[SessionDataWrapper[SessionData]]:
+    async def read(
+        self, session_id: str, data_model: Type[SessionData]
+    ) -> Optional[SessionDataWrapper[SessionData]]:
         """Read session data from the storage."""
         raise NotImplementedError()
 

@@ -8,7 +8,8 @@ from pydantic import BaseModel, Field
 
 
 class APIParams(BaseModel):
-    ...
+    max_age: int = 14
+    max_date: DateTime = None
 
 
 class OpenAPIKeyHeader(BaseModel):
