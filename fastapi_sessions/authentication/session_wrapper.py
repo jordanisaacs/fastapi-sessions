@@ -10,7 +10,7 @@ Functions:
 
 from os import urandom
 from base64 import b64encode
-from typing import TypeVar, Generic
+from typing import TypeVar, Generic, Optional
 
 from pydantic.generics import GenericModel
 from pydantic import Field, BaseModel
@@ -29,5 +29,5 @@ def generate_token() -> str:
 
 class SessionDataWrapper(GenericModel, Generic[SessionData]):
     data: SessionData
-    csrf_token: str = Field(default_factory=generate_token)
+    csrf_token: Optional[str] = Field(default_factory=generate_token)
     session_id: str = Field(default_factory=generate_token)
