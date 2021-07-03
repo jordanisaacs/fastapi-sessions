@@ -10,6 +10,8 @@ Source Code: [https://github.com/jordanisaacs/fastapi-sessions/](https://github.
 
 ---
 
+Note: Currently in the middle of a [rewrite](https://github.com/jordanisaacs/fastapi-sessions/issues/7#issue-931170265) to bring library to a stable point and bring some needed features
+
 Quickly add session authentication to your FastAPI project. **FastAPI Sessions** is designed to be user friendly and customizable.
 
 
@@ -27,7 +29,6 @@ Quickly add session authentication to your FastAPI project. **FastAPI Sessions**
 Upcoming:
 
 * Documentation and user guides
-* Hassle free CSRF Tokens
 * More backends!
 
 > This project was started on April 3rd and progress is ongoing. Follow the repo for updates!
