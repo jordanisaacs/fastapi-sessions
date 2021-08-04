@@ -7,7 +7,7 @@ Documentation: [https://jordanisaacs.github.io/fastapi-sessions/](https://jordan
 
 Source Code: [https://github.com/jordanisaacs/fastapi-sessions/](https://github.com/jordanisaacs/fastapi-sessions/)
 
-PyPI: [https://pypi.org/project/fastapi-session/](https://pypi.org/project/fastapi-session/)
+PyPI: [https://pypi.org/project/fastapi-sessions/](https://pypi.org/project/fastapi-sessions/)
 
 ---
 
