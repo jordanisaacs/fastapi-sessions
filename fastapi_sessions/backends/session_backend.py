@@ -1,26 +1,38 @@
-from typing import Dict, Any, Optional, Tuple
+"""Generic backend code."""
 from abc import ABC, abstractmethod
+from typing import Generic, Optional, TypeVar
 
-class SessionBackend(ABC):
+from fastapi_sessions.frontends.session_frontend import ID
+from pydantic.main import BaseModel
+
+SessionModel = TypeVar("SessionModel", bound=BaseModel)
+
+
+class BackendError(Exception):
+    """Error that is thrown by backends."""
+
+    pass
+
+
+class SessionBackend(ABC, Generic[ID, SessionModel]):
+    """Abstract class that defines methods for interacting with session data."""
+
     @abstractmethod
-    async def read(self, session_id: str) -> Optional[Dict[str, Any]]:
-        """ Read session data from the storage."""
+    async def create(self, session_id: ID, data: SessionModel) -> None:
+        """Create a new session."""
         raise NotImplementedError()
 
     @abstractmethod
-    async def write(
-        self,
-        data: 'SessionDataWrapper[SessionData]'
-    ) -> bool:
-        """ Write session data to the storage"""
+    async def read(self, session_id: ID) -> Optional[SessionModel]:
+        """Read session data from the storage."""
         raise NotImplementedError()
 
     @abstractmethod
-    async def remove(self, session_id: str) -> None:
-        """ Remove session data from the storage. """
+    async def update(self, session_id: ID, data: SessionModel) -> None:
+        """Update session data to the storage"""
         raise NotImplementedError()
 
     @abstractmethod
-    async def exists(self, session_id: str) -> bool:
-        """ Test if storage contains session data for a given session_id. """
+    async def delete(self, session_id: ID) -> None:
+        """Remove session data from the storage."""
         raise NotImplementedError()
