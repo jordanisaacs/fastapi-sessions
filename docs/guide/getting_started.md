@@ -140,12 +140,12 @@ app = FastAPI()
 async def create_session(name: str, response: Response):
 
     session = uuid4()
-    data = SessionData(name=name)
+    data = SessionData(username=name)
 
     await backend.create(session, data)
     cookie.attach_to_response(response, session)
 
-    return "created session for {name}"
+    return f"created session for {name}"
 ```
 
 Now that our user can create a session, lets verify who they are. Notice how we depend on both the cookie and the verifier. The frontend must always be before the verifier as FastAPI Sessions relies on some [hackery](https://github.com/tiangolo/fastapi/issues/2575). It is to enable frontends and backends to be mixed and matched while still taking advantage of dependency injection and autodocs. The cookie extracts the session id and then the verifier checks the validity of the session.
@@ -256,12 +256,12 @@ app = FastAPI()
 async def create_session(name: str, response: Response):
 
     session = uuid4()
-    data = SessionData(name=name)
+    data = SessionData(username=name)
 
     await backend.create(session, data)
     cookie.attach_to_response(response, session)
 
-    return "created session for {name}"
+    return f"created session for {name}"
 
 
 @app.get("/whoami", dependencies=[Depends(cookie)])

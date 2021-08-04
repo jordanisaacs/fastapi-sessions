@@ -78,12 +78,12 @@ app = FastAPI()
 async def create_session(name: str, response: Response):
 
     session = uuid4()
-    data = SessionData(name=name)
+    data = SessionData(username=name)
 
     await backend.create(session, data)
     cookie.attach_to_response(response, session)
 
-    return "created session for {name}"
+    return f"created session for {name}"
 
 
 @app.get("/whoami", dependencies=[Depends(cookie)])
