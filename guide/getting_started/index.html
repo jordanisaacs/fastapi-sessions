@@ -629,10 +629,6 @@ Please read through all the docs, especially <a href="../../sessions">Sessions</
 <span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">Depends</span>
 <span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">UUID</span><span class="p">,</span> <span class="n">uuid4</span>
 
-<span class="kn">import</span> <span class="nn">sys</span>
-
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span>
-
 <span class="kn">from</span> <span class="nn">fastapi_sessions.backends.implementations</span> <span class="kn">import</span> <span class="n">InMemoryBackend</span>
 <span class="kn">from</span> <span class="nn">fastapi_sessions.session_verifier</span> <span class="kn">import</span> <span class="n">SessionVerifier</span>
 <span class="kn">from</span> <span class="nn">fastapi_sessions.frontends.implementations</span> <span class="kn">import</span> <span class="n">SessionCookie</span><span class="p">,</span> <span class="n">CookieParameters</span>
