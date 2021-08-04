@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Ready-to-use session cookies with custom backends for FastAPI">
+        <meta name="description" content="Ready-to-use session authentication for FastAPI">
       
       
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.0">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.2.2">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.33e2939f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.1118c9be.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ef6f36e2.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ba0d045b.min.css">
         
       
     
@@ -40,6 +40,8 @@
     
     
       
+
+
     
     
   </head>
@@ -108,14 +110,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -255,6 +261,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -269,6 +276,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -303,6 +311,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#session-frontend" class="md-nav__link">
+    Session Frontend
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#session-backend" class="md-nav__link">
     Session Backend
   </a>
@@ -310,16 +325,29 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#session-cookie" class="md-nav__link">
-    Session Cookie
+  <a href="#session-verifier" class="md-nav__link">
+    Session Verifier
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-sessions" class="md-nav__link">
-    Using Sessions
+  <a href="#bringing-it-together" class="md-nav__link">
+    Bringing it together
   </a>
+  
+    <nav class="md-nav" aria-label="Bringing it together">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-session-route" class="md-nav__link">
+    Create Session Route
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -339,42 +367,6 @@
   
 </nav>
       
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../cookies/" class="md-nav__link">
-        Cookies
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../backends/" class="md-nav__link">
-        Backends
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../usage/" class="md-nav__link">
-        Usage
-      </a>
     </li>
   
 
@@ -400,6 +392,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -432,6 +425,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#session-frontend" class="md-nav__link">
+    Session Frontend
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#session-backend" class="md-nav__link">
     Session Backend
   </a>
@@ -439,16 +439,29 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#session-cookie" class="md-nav__link">
-    Session Cookie
+  <a href="#session-verifier" class="md-nav__link">
+    Session Verifier
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-sessions" class="md-nav__link">
-    Using Sessions
+  <a href="#bringing-it-together" class="md-nav__link">
+    Bringing it together
   </a>
+  
+    <nav class="md-nav" aria-label="Bringing it together">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-session-route" class="md-nav__link">
+    Create Session Route
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -480,15 +493,15 @@
                 <h1 id="getting-started">Getting started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
 <h2 id="install-fastapi-sessions">Install FastAPI Sessions<a class="headerlink" href="#install-fastapi-sessions" title="Permanent link">&para;</a></h2>
 <p>The first step is to make sure you have FastAPI installed, along with Uvicorn for testing your API. If this sounds unfamiliar to you, first check out the <a href="https://fastapi.tiangolo.com/tutorial/">FastAPI tutorial</a></p>
-<p>Assuming you have your environment ready, all you need to do is run the code below.</p>
+<p>Assuming you have your environment ready, lets install the library using pip.</p>
 <div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">fastapi</span><span class="o">-</span><span class="n">sessions</span>
 </code></pre></div>
 <h2 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
-<p>Getting up and running with FastAPI Sessions is extremely simple. There are three main components you need:</p>
+<p>To get up and running with FastAPI sessions there are three main components you will use.</p>
 <ol>
-<li>Session Data - A pydantic model that specifies what data will be behind a session (e.g. username)</li>
-<li><code>SessionBackend</code> Class - Where the session data is actually being stored.</li>
-<li><code>SessionCookie</code> Class - The heavy lifter, it handles all the processing of the sessions</li>
+<li><code>SessionFrontend</code> Abstract Class - This class provides the interface for extracting the session IDs from the request whether it is a cookie, header, etc.</li>
+<li><code>SessionBackend</code> Abstract Class - This class provides the interface for CRUD operations of your session data.</li>
+<li><code>SessionVerifier</code> Abstract Class - This class is where you verify that the provided session ID is actually valid.</li>
 </ol>
 <p>Now lets take a quick look at a quick API. More details on configurations and design choices will be covered later.</p>
 <hr />
@@ -499,126 +512,216 @@
 <span class="k">class</span> <span class="nc">SessionData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">username</span><span class="p">:</span> <span class="nb">str</span>
 </code></pre></div>
-<hr />
-<h3 id="session-backend">Session Backend<a class="headerlink" href="#session-backend" title="Permanent link">&para;</a></h3>
-<p>We will use the simple <code>InMemoryBackend()</code> right now. It stores session data in the server's memory. There are more options that we will go into in the <a href="../backends">backend</a> section.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi_sessions.backends</span> <span class="kn">import</span> <span class="n">InMemoryBackend</span>
+<h3 id="session-frontend">Session Frontend<a class="headerlink" href="#session-frontend" title="Permanent link">&para;</a></h3>
+<p>We will use the provided <code>SessionCookie</code> frontend. The cookie's value is the signed UUID that is used as a key to the session data on the backend. Take notice of the <code>identifier</code> parameter, it connects the frontend to its corresponding verifier.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi_sessions.frontends.implementations</span> <span class="kn">import</span> <span class="n">SessionCookie</span><span class="p">,</span> <span class="n">CookieParameters</span>
 
-<span class="n">backend</span> <span class="o">=</span> <span class="n">InMemoryDB</span><span class="p">()</span>
-</code></pre></div>
-<hr />
-<h3 id="session-cookie">Session Cookie<a class="headerlink" href="#session-cookie" title="Permanent link">&para;</a></h3>
-<p>Now we are ready to create our session cookie. It is extremely simple. Just give it a name, a secret key, and pass in our specified data model and backend. Also set <code>auto_error=False</code>, what that does will be explained in the <a href="../cookies">cookies</a> section. Now we are ready to authenticate!</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi_sessions</span> <span class="kn">import</span> <span class="n">SessionCookie</span>
+<span class="n">cookie_params</span> <span class="o">=</span> <span class="n">CookieParameters</span><span class="p">()</span>
 
-<span class="n">session</span> <span class="o">=</span> <span class="n">SessionCookie</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">,</span>
-    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;secret&quot;</span><span class="p">,</span>
-    <span class="n">data_model</span><span class="o">=</span><span class="n">SessionData</span><span class="p">,</span>
-    <span class="n">backend</span><span class="o">=</span><span class="n">InMemoryBackend</span><span class="p">(),</span>
-    <span class="n">auto_error</span><span class="o">=</span><span class="kc">False</span>
+<span class="c1"># Uses UUID</span>
+<span class="n">cookie</span> <span class="o">=</span> <span class="n">SessionCookie</span><span class="p">(</span>
+    <span class="n">cookie_name</span><span class="o">=</span><span class="s2">&quot;cookie&quot;</span><span class="p">,</span>
+    <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;general_verifier&quot;</span><span class="p">,</span>
+    <span class="n">auto_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;DONOTUSE&quot;</span><span class="p">,</span>
+    <span class="n">cookie_params</span><span class="o">=</span><span class="n">cookie_params</span><span class="p">,</span>
 <span class="p">)</span>
 </code></pre></div>
 <hr />
-<h3 id="using-sessions">Using Sessions<a class="headerlink" href="#using-sessions" title="Permanent link">&para;</a></h3>
-<p>Now it is as simple as using FastAPI's <a href="https://fastapi.tiangolo.com/tutorial/dependencies/">dependency injection</a> system to protect your routes! Furthermore FastAPI Sessions is compatible with the OpenAPI specs so it will show up in your docs as authenticated routes.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Any</span>
-<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">HTTPException</span>
+<h3 id="session-backend">Session Backend<a class="headerlink" href="#session-backend" title="Permanent link">&para;</a></h3>
+<p>We will use the simple <code>InMemoryBackend[ID, Data]()</code> right now. It stores session data in the server's memory. As <code>SessionCookie</code> utilizes <code>UUID</code> that is our ID type.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">UUID</span>
+<span class="kn">from</span> <span class="nn">fastapi_sessions.backends.implementations</span> <span class="kn">import</span> <span class="n">InMemoryBackend</span>
 
-<span class="kn">from</span> <span class="nn">fastapi_sessions</span> <span class="kn">import</span> <span class="n">SessionInfo</span>
-
-<span class="n">test_app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
-
-<span class="nd">@test_app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/secure&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">secure_thing</span><span class="p">(</span><span class="n">session_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SessionInfo</span><span class="p">]</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">test_session</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="n">session_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
-            <span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span>
-            <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Not authenticated&quot;</span>
-        <span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;You are secure!&quot;</span><span class="p">}</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">InMemoryBackend</span><span class="p">[</span><span class="n">UUID</span><span class="p">,</span> <span class="n">SessionData</span><span class="p">]()</span>
 </code></pre></div>
-<p>To create a session (e.g. login), just call <code>session.create_session(user, response)</code> and your user has a session.</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@test_app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/get_session&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="p">,</span> <span class="n">session_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SessionInfo</span><span class="p">]</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">test_session</span><span class="p">)):</span>
-    <span class="n">test_user</span> <span class="o">=</span> <span class="n">SessionData</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">session</span><span class="o">.</span><span class="n">create_session</span><span class="p">(</span><span class="n">test_user</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;You now have a session!&quot;</span><span class="p">}</span>
+<hr />
+<h3 id="session-verifier">Session Verifier<a class="headerlink" href="#session-verifier" title="Permanent link">&para;</a></h3>
+<p>With the data, frontend, and backend all set up we now need to write our verifier. We will keep it simple and just have it verify that the session exists in the backend. It is a little unseemly as it utilizes Python's abstract classes. Notice we inerit from <code>SessionVerifier</code> which does all the heavy lifting of reading from the backend and obtaining the session from the frontend. The <code>identifier</code> must match the corresponding frontend <code>identifier</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi_sessions.session_verifier</span> <span class="kn">import</span> <span class="n">SessionVerifier</span>
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">HTTPException</span>
+
+<span class="k">class</span> <span class="nc">BasicVerifier</span><span class="p">(</span><span class="n">SessionVerifier</span><span class="p">[</span><span class="n">UUID</span><span class="p">,</span> <span class="n">SessionData</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">auto_error</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">backend</span><span class="p">:</span> <span class="n">InMemoryBackend</span><span class="p">[</span><span class="n">UUID</span><span class="p">,</span> <span class="n">SessionData</span><span class="p">],</span>
+        <span class="n">auth_http_exception</span><span class="p">:</span> <span class="n">HTTPException</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_identifier</span> <span class="o">=</span> <span class="n">identifier</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_auto_error</span> <span class="o">=</span> <span class="n">auto_error</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">backend</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_auth_http_exception</span> <span class="o">=</span> <span class="n">auth_http_exception</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_identifier</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">backend</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">auto_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auto_error</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">auth_http_exception</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auth_http_exception</span>
+
+    <span class="k">def</span> <span class="nf">verify_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">SessionData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;If the session exists, it is valid&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+
+<span class="n">verifier</span> <span class="o">=</span> <span class="n">BasicVerifier</span><span class="p">(</span>
+    <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;general_verifier&quot;</span><span class="p">,</span>
+    <span class="n">auto_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span>
+    <span class="n">auth_http_exception</span><span class="o">=</span><span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;invalid session&quot;</span><span class="p">),</span>
+<span class="p">)</span>
 </code></pre></div>
-<p>To end a session (e.g. logout), just call <code>session.end_session(session_id, response)</code> and the session is over.</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@test_app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/leave_session&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="p">,</span> <span class="n">session_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SessionInfo</span><span class="p">]</span>  <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">test_session</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">session_info</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
-            <span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span>
-            <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Not authenticated&quot;</span>
-        <span class="p">)</span>
-    <span class="k">await</span> <span class="n">test_session</span><span class="o">.</span><span class="n">end_session</span><span class="p">(</span><span class="n">session_info</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">response</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;You now don&#39;t have a session&quot;</span><span class="p">,</span> <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">session_info</span><span class="p">}</span>
+<hr />
+<h3 id="bringing-it-together">Bringing it together<a class="headerlink" href="#bringing-it-together" title="Permanent link">&para;</a></h3>
+<p>Now we utilize FastAPI's <a href="https://fastapi.tiangolo.com/tutorial/dependencies/">dependency injection</a> system to protect your routes! Furthermore FastAPI Sessions is compatible with the OpenAPI specs so they will show up in your docs as authenticated routes.</p>
+<h4 id="create-session-route">Create Session Route<a class="headerlink" href="#create-session-route" title="Permanent link">&para;</a></h4>
+<p>Lets start with a simple session creation endpoint. This is not a protected.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">uuid4</span>
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Response</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/create_session/</span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">create_session</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="p">):</span>
+
+    <span class="n">session</span> <span class="o">=</span> <span class="n">uuid4</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">SessionData</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">await</span> <span class="n">backend</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">cookie</span><span class="o">.</span><span class="n">attach_to_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;created session for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Now that our user can create a session, lets verify who they are. Notice how we depend on both the cookie and the verifier. The frontend must always be before the verifier as FastAPI Sessions relies on some <a href="https://github.com/tiangolo/fastapi/issues/2575">hackery</a>. It is to enable frontends and backends to be mixed and matched while still taking advantage of dependency injection and autodocs. The cookie extracts the session id and then the verifier checks the validity of the session.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/whoami&quot;</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">cookie</span><span class="p">)])</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">whoami</span><span class="p">(</span><span class="n">session_data</span><span class="p">:</span> <span class="n">SessionData</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">verifier</span><span class="p">)):</span>
+    <span class="k">return</span> <span class="n">session_data</span>
+</code></pre></div>
+<p>To end a session (e.g. logout), just delete it from the backend. As we now require the <code>session_id</code> we move it to be a dependency that returns a value. Not all frontends have the option, but with cookies we can delete it in the response which we do.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/delete_session&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">del_session</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="p">,</span> <span class="n">session_id</span><span class="p">:</span> <span class="n">UUID</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">cookie</span><span class="p">)):</span>
+    <span class="k">await</span> <span class="n">backend</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">session_id</span><span class="p">)</span>
+    <span class="n">cookie</span><span class="o">.</span><span class="n">delete_from_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;deleted session&quot;</span>
 </code></pre></div>
 <h2 id="putting-it-all-together">Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permanent link">&para;</a></h2>
 <p>Now lets put it all back together to see our session based authentication app.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>While FastAPI-Sessions makes creating session based authentication easy, it is still a lower level library that lets you make design decisions with security implications.
-Please read through all the docs, especially <a href="../../sessions">Sessions</a> (forthcoming), and do your own research if you have not worked with cookies and sessions for authentication before.</p>
+<p>While FastAPI-Sessions makes creating session based authentication easy, there are security implications.
+Please read through all the docs, especially <a href="../../sessions">Sessions</a> (forthcoming), and do your own research if you have not worked with cookies and sessions for authentication before. </p>
 </div>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Any</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">HTTPException</span><span class="p">,</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">Depends</span>
+<span class="kn">from</span> <span class="nn">uuid</span> <span class="kn">import</span> <span class="n">UUID</span><span class="p">,</span> <span class="n">uuid4</span>
 
-<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
-<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">HTTPException</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 
-<span class="kn">from</span> <span class="nn">fastapi_sessions</span> <span class="kn">import</span> <span class="n">SessionCookie</span><span class="p">,</span> <span class="n">SessionInfo</span>
-<span class="kn">from</span> <span class="nn">fastapi_sessions.backends</span> <span class="kn">import</span> <span class="n">InMemoryBackend</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span>
 
-<span class="n">test_app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">fastapi_sessions.backends.implementations</span> <span class="kn">import</span> <span class="n">InMemoryBackend</span>
+<span class="kn">from</span> <span class="nn">fastapi_sessions.session_verifier</span> <span class="kn">import</span> <span class="n">SessionVerifier</span>
+<span class="kn">from</span> <span class="nn">fastapi_sessions.frontends.implementations</span> <span class="kn">import</span> <span class="n">SessionCookie</span><span class="p">,</span> <span class="n">CookieParameters</span>
+
 
 <span class="k">class</span> <span class="nc">SessionData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
     <span class="n">username</span><span class="p">:</span> <span class="nb">str</span>
 
 
-<span class="k">class</span> <span class="nc">BadSessionData</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">fakename</span><span class="p">:</span> <span class="nb">str</span>
+<span class="n">cookie_params</span> <span class="o">=</span> <span class="n">CookieParameters</span><span class="p">()</span>
+
+<span class="c1"># Uses UUID</span>
+<span class="n">cookie</span> <span class="o">=</span> <span class="n">SessionCookie</span><span class="p">(</span>
+    <span class="n">cookie_name</span><span class="o">=</span><span class="s2">&quot;cookie&quot;</span><span class="p">,</span>
+    <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;general_verifier&quot;</span><span class="p">,</span>
+    <span class="n">auto_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;DONOTUSE&quot;</span><span class="p">,</span>
+    <span class="n">cookie_params</span><span class="o">=</span><span class="n">cookie_params</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">backend</span> <span class="o">=</span> <span class="n">InMemoryBackend</span><span class="p">[</span><span class="n">UUID</span><span class="p">,</span> <span class="n">SessionData</span><span class="p">]()</span>
 
 
-<span class="n">test_session</span> <span class="o">=</span> <span class="n">SessionCookie</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">,</span>
-    <span class="n">secret_key</span><span class="o">=</span><span class="s2">&quot;helloworld&quot;</span><span class="p">,</span>
-    <span class="n">backend</span><span class="o">=</span><span class="n">InMemoryBackend</span><span class="p">(),</span>
-    <span class="n">data_model</span><span class="o">=</span><span class="n">SessionData</span><span class="p">,</span>
-    <span class="n">scheme_name</span><span class="o">=</span><span class="s2">&quot;Test Cookies&quot;</span><span class="p">,</span>
-    <span class="n">auto_error</span><span class="o">=</span><span class="kc">False</span>
+<span class="k">class</span> <span class="nc">BasicVerifier</span><span class="p">(</span><span class="n">SessionVerifier</span><span class="p">[</span><span class="n">UUID</span><span class="p">,</span> <span class="n">SessionData</span><span class="p">]):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">auto_error</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">backend</span><span class="p">:</span> <span class="n">InMemoryBackend</span><span class="p">[</span><span class="n">UUID</span><span class="p">,</span> <span class="n">SessionData</span><span class="p">],</span>
+        <span class="n">auth_http_exception</span><span class="p">:</span> <span class="n">HTTPException</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_identifier</span> <span class="o">=</span> <span class="n">identifier</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_auto_error</span> <span class="o">=</span> <span class="n">auto_error</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span> <span class="o">=</span> <span class="n">backend</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_auth_http_exception</span> <span class="o">=</span> <span class="n">auth_http_exception</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_identifier</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">backend</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">auto_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auto_error</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">auth_http_exception</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_auth_http_exception</span>
+
+    <span class="k">def</span> <span class="nf">verify_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">SessionData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;If the session exists, it is valid&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+
+<span class="n">verifier</span> <span class="o">=</span> <span class="n">BasicVerifier</span><span class="p">(</span>
+    <span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;general_verifier&quot;</span><span class="p">,</span>
+    <span class="n">auto_error</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">backend</span><span class="o">=</span><span class="n">backend</span><span class="p">,</span>
+    <span class="n">auth_http_exception</span><span class="o">=</span><span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;invalid session&quot;</span><span class="p">),</span>
 <span class="p">)</span>
 
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
 
-<span class="nd">@test_app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/secure&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">secure_thing</span><span class="p">(</span><span class="n">session_data</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SessionInfo</span><span class="p">]</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">test_session</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="n">session_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
-            <span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span>
-            <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Not authenticated&quot;</span>
-        <span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;You are secure&quot;</span><span class="p">,</span> <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">session_data</span><span class="p">}</span>
 
-<span class="nd">@test_app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/get_session&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="p">,</span> <span class="n">session_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SessionInfo</span><span class="p">]</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">test_session</span><span class="p">)):</span>
-    <span class="n">old_session</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">if</span> <span class="n">session_info</span><span class="p">:</span>
-        <span class="n">old_session</span> <span class="o">=</span> <span class="n">session_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/create_session/</span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">create_session</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="p">):</span>
 
-    <span class="n">test_user</span> <span class="o">=</span> <span class="n">SessionData</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">)</span>
-    <span class="k">await</span> <span class="n">test_session</span><span class="o">.</span><span class="n">create_session</span><span class="p">(</span><span class="n">test_user</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">old_session</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;You now have a session&quot;</span><span class="p">,</span> <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">test_user</span><span class="p">}</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">uuid4</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">SessionData</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 
-<span class="nd">@test_app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/leave_session&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span> <span class="nf">logout</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="p">,</span> <span class="n">session_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SessionInfo</span><span class="p">]</span>  <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">test_session</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">session_info</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span>
-            <span class="n">status_code</span><span class="o">=</span><span class="mi">403</span><span class="p">,</span>
-            <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Not authenticated&quot;</span>
-        <span class="p">)</span>
-    <span class="k">await</span> <span class="n">test_session</span><span class="o">.</span><span class="n">end_session</span><span class="p">(</span><span class="n">session_info</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">response</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;You now don&#39;t have a session&quot;</span><span class="p">,</span> <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">session_info</span><span class="p">}</span>
+    <span class="k">await</span> <span class="n">backend</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">cookie</span><span class="o">.</span><span class="n">attach_to_response</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;created session for </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/whoami&quot;</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">cookie</span><span class="p">)])</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">whoami</span><span class="p">(</span><span class="n">session_data</span><span class="p">:</span> <span class="n">SessionData</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">verifier</span><span class="p">)):</span>
+    <span class="k">return</span> <span class="n">session_data</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/delete_session&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">del_session</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="n">Response</span><span class="p">,</span> <span class="n">session_id</span><span class="p">:</span> <span class="n">UUID</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">cookie</span><span class="p">)):</span>
+    <span class="k">await</span> <span class="n">backend</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">session_id</span><span class="p">)</span>
+    <span class="n">cookie</span><span class="o">.</span><span class="n">delete_from_response</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;deleted session&quot;</span>
 </code></pre></div>
                 
               
@@ -638,7 +741,8 @@ Please read through all the docs, especially <a href="../../sessions">Sessions</
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../../sessions/" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="../../sessions/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Sessions" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -652,20 +756,6 @@ Please read through all the docs, especially <a href="../../sessions">Sessions</
           </div>
         </a>
       
-      
-        <a href="../cookies/" class="md-footer__link md-footer__link--next" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Cookies
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-          </div>
-        </a>
       
     </nav>
   
@@ -688,10 +778,10 @@ Please read through all the docs, especially <a href="../../sessions">Sessions</
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.fe42c31b.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.709b4209.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d892486b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.2b46852b.min.js"></script>
       
     
   </body>
