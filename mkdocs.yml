@@ -1,5 +1,5 @@
 site_name: FastAPI Sessions
-site_description: Ready-to-use session cookies with custom backends for FastAPI
+site_description: Ready-to-use session authentication for FastAPI
 
 theme:
     name: 'material'
@@ -23,6 +23,3 @@ nav:
   - Sessions: sessions.md
   - Guide:
     - Getting Started: guide/getting_started.md
-    - Cookies: guide/cookies.md
-    - Backends: guide/backends.md
-    - Usage: guide/usage.md
