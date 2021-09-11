@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fastapi-sessions"
-version = "0.3.1"
+version = "0.3.2"
 license = "MIT"
 description = "Ready-to-use session library for FastAPI"
 authors = ["Jordan Isaacs"]
