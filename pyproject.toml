@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fastapi-sessions"
-version = "0.3.0"
+version = "0.3.1"
 license = "MIT"
 description = "Ready-to-use session library for FastAPI"
 authors = ["Jordan Isaacs"]
@@ -19,10 +19,13 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Topic :: Internet :: WWW/HTTP :: Session"
 ]
+include = [
+  "LICENSE",
+]
 
 [tool.poetry.dependencies]
 python = ">=3.6.1,<4.0"
-fastapi = "^0.65.1"
+fastapi = "^0.65"
 itsdangerous = "^2.0.1"
 
 mkdocs-material = { version = "^7.1.0", optional = true }
@@ -31,10 +34,10 @@ markdown-include = { version = "^0.6.0", optional = true }
 flake8 = { version = "^3.9.0", optional = true }
 flake8-docstrings = { version = "^1.6.0", optional = true }
 black = {version = "^20.8b1", optional = true }
-uvicorn = "^0.14.0"
+uvicorn = { version = "^0.14.0", optional = true }
 pytest = {version = "^6.2.3", optional = true }
-isort = {version = "^5.9.3", optional = true, extras = ["dev"]}
+isort = {version = "^5.9.3", optional = true }
 
 [tool.poetry.extras]
 docs = ["mkdocs-material", "markdown-include"]
-dev = ["flake8", "black", "flake8-docstrings", "uvicorn", "pytest" ]
+dev = ["flake8", "black", "flake8-docstrings", "uvicorn", "pytest", "isort" ]
