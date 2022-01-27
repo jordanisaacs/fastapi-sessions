@@ -1,5 +1,6 @@
 # FastAPI-Sessions
 
+Note: Currently not maintained, feel free to fork and modify to your needs
 
 ---
 
