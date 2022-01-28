@@ -84,14 +84,7 @@ class SessionCookie(SecurityBase, SessionFrontend[UUID]):
         return session_id
 
     def delete_from_response(self, response: Response) -> None:
-        if self.cookie_params.domain:
-            response.delete_cookie(
-                key=self.model.name,
-                path=self.cookie_params.path,
-                domain=self.cookie_params.domain,
-            )
-        else:
-            response.delete_cookie(key=self.model.name, path=self.cookie_params.path)
+        raise NotImplementedError()
 
     def attach_to_response(self, response: Response, session_id: UUID) -> None:
         response.set_cookie(
