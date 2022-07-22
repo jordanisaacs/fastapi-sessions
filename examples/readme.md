@@ -1,7 +1,7 @@
 ## Run tests
 
 ```bash
-pip install fastapi itsdangerous pydantic uvicorn
+pip install fastapi itsdangerous pydantic redis uvicorn
 uvicorn basic:app --reload
 uvicorn basic_redis:app --reload
 ```
