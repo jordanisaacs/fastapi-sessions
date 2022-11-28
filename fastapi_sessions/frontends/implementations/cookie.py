@@ -16,6 +16,9 @@ class SameSiteEnum(str, Enum):
     strict = "strict"
     none = "none"
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class CookieParameters(BaseModel):
     max_age: int = 14 * 24 * 60 * 60  # 14 days in seconds
