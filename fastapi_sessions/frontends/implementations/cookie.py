@@ -45,7 +45,7 @@ class SessionCookie(SecurityBase, SessionFrontend[UUID]):
         self.scheme_name = scheme_name or self.__class__.__name__
         self.auto_error = auto_error
         self.signer = URLSafeTimedSerializer(secret_key, salt=cookie_name)
-        self.cookie_params = cookie_params.copy(deep=True)
+        self.cookie_params = cookie_params.model_copy(deep=True)
 
     @property
     def identifier(self) -> str:
